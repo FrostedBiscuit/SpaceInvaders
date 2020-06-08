@@ -10,14 +10,16 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField]
     private Transform GunTransform;
 
+    private GameObject shot;
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && shot == null)
         {
             Debug.Log("Shooting...");
 
-            Instantiate(Projectile, GunTransform.position, GunTransform.rotation);
+            shot = Instantiate(Projectile, GunTransform.position, GunTransform.rotation);
         }
     }
 }

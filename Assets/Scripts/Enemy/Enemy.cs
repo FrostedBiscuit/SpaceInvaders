@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     private EnemyRow ParentRow;
 
     void Start()
-    {
+    { 
         ParentRow = transform.parent.GetComponent<EnemyRow>();
     }
 

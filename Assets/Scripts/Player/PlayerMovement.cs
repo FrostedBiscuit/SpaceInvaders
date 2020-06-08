@@ -7,13 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float MovementSpeed = 10f;
     [SerializeField]
-    private float MaxMovementToOneSide = 7f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private float MaxMovementToOneSide = 7.5f;
 
     // Update is called once per frame
     void Update()

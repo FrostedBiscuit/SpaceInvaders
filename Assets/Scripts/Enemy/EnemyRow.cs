@@ -11,19 +11,19 @@ public class EnemyRow : MonoBehaviour
         Right
     }
 
-    private Direction MoveDir = Direction.Right;
-
     public bool ShouldMoveDown => Enemies.Any(e => Mathf.Abs(e.transform.position.x) >= EnemyGrid.MaxXMove);
 
-    public float StartDelay = 1f;
-
     public List<GameObject> Enemies;
+
+    private Direction MoveDir = Direction.Right;
 
     public void MoveHorizontal()
     {
         for (int i = 0; i < Enemies.Count; i++)
         {
             Enemies[i].transform.position += MoveDir == Direction.Left ? (Vector3)Vector2.left * 0.5f : (Vector3)Vector2.right * 0.5f;
+
+            Enemies[i].GetComponent<Animator>().SetTrigger("Move");
         }
     }
 

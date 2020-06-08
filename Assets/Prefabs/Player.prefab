@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 7653325968905646817}
   - component: {fileID: 7653325968905646818}
   - component: {fileID: 3602179270844099829}
+  - component: {fileID: 968954540772211857}
   - component: {fileID: 6847928260436160296}
   m_Layer: 0
   m_Name: Player
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 10
-  MaxMovementToOneSide: 7
+  MaxMovementToOneSide: 7.5
 --- !u!114 &3602179270844099829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +177,18 @@ MonoBehaviour:
   Projectile: {fileID: 4843598742338771416, guid: b3caee969fb09814b8e9c7cb5485695a,
     type: 3}
   GunTransform: {fileID: 2453275995486087829}
+--- !u!114 &968954540772211857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653325968905646816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84984b8b6f502ea45935de4a1b907cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &6847928260436160296
 BoxCollider2D:
   m_ObjectHideFlags: 0
