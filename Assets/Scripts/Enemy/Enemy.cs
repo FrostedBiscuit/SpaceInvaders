@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D()
     {
+        GameManager.instance.AddScore(ParentRow.EnemyScoreValue);
+
         ParentRow.Enemies.Remove(gameObject);
 
         Destroy(gameObject);

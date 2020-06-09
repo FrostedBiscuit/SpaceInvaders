@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject EnemyGridPrefab;
+    [SerializeField]
+    private GameObject DefeatPanel;
 
     private void Start()
     {
@@ -52,11 +54,20 @@ public class GameManager : MonoBehaviour
 
     public void PlayerLost()
     {
+        // Probably display a "try again" panel here
 
+        DefeatPanel.SetActive(true);
+
+        if (Score > HighScore)
+        {
+            PlayerPrefs.SetInt(HighScoreKey, Score);
+        }
     }
 
     public void ReloadLevel()
     {
+        PlayerHealth.Lives = 3;
+
         SceneManager.LoadScene("Main");
     }
 
@@ -79,10 +90,5 @@ public class GameManager : MonoBehaviour
         Instantiate(EnemyGridPrefab, new Vector3(0f, GridYStart - gridIteration * 0.5f), Quaternion.identity);
 
         gridIteration = gridIteration++ % 11;
-    }
-
-    private void SaveNewHighScore()
-    {
-        PlayerPrefs.SetInt(HighScoreKey, Score);
     }
 }

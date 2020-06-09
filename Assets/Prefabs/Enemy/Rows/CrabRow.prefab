@@ -293,7 +293,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 86c98a6ed8ca793498a6baa6d7d08e0b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1716625644024505822, guid: d663303531db2c34686bf7940eef9641,
         type: 3}
       propertyPath: m_Sprite
@@ -336,6 +336,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3206461461594103371, guid: 8959e80a39797eb4c95f8b6de060e1c6,
         type: 3}
+    - target: {fileID: 2792467998930134950, guid: d663303531db2c34686bf7940eef9641,
+        type: 3}
+      propertyPath: EnemyScoreValue
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2816507979218470965, guid: d663303531db2c34686bf7940eef9641,
         type: 3}
       propertyPath: m_Sprite

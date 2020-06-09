@@ -33,13 +33,13 @@ public class EnemyGrid : MonoBehaviour
 
     private void MovementLoop()
     {
+        if (Random.Range(0, 2) == 1)
+        {
+            ShootProjectiles();
+        }
+
         if (EnemyRows.Any(er => er.transform.position.y <= 1f && er.Enemies.Count > 0) || PlayerHealth.Lives == 0)
         {
-            // Player has lost...
-            Debug.Log("Player has lost");
-
-            GameManager.instance.PlayerLost();
-
             return;
         }
 
@@ -61,7 +61,7 @@ public class EnemyGrid : MonoBehaviour
         // Check if enemies should move down a row
         if (EnemyRows.Any(er => er.ShouldMoveDown) && forceMoveHorizontal == false)
         {
-            Debug.Log("Rows moving down");
+            //Debug.Log("Rows moving down");
 
             float delay = 0f;
 
@@ -76,7 +76,7 @@ public class EnemyGrid : MonoBehaviour
         }
         else
         {
-            Debug.Log("Rows moving horizontally");
+            //Debug.Log("Rows moving horizontally");
 
             float delay = 0f;
 
@@ -100,8 +100,10 @@ public class EnemyGrid : MonoBehaviour
         }
     }
 
-    private void EnemiesAttack()
+    private void ShootProjectiles()
     {
+        Debug.Log("Enemies are about to shoot");
+
         System.Random random = new System.Random();
 
         EnemyRow invasionRow = EnemyRows.First(er => er.Enemies.Count > 0);

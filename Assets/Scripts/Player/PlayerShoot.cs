@@ -17,7 +17,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && shot == null)
         {
-            Debug.Log("Shooting...");
+            //Debug.Log("Shooting...");
 
             shot = Instantiate(Projectile, GunTransform.position, GunTransform.rotation);
         }

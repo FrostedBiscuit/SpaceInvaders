@@ -331,6 +331,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5171767346870427708, guid: 8959e80a39797eb4c95f8b6de060e1c6,
         type: 3}
+    - target: {fileID: 2792467998930134950, guid: d663303531db2c34686bf7940eef9641,
+        type: 3}
+      propertyPath: EnemyScoreValue
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2816507979218470965, guid: d663303531db2c34686bf7940eef9641,
         type: 3}
       propertyPath: m_Sprite

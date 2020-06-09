@@ -8,10 +8,14 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D()
     {
+        Debug.Log("Player was hit");
+
         Lives = Mathf.Max(0, Lives - 1);
 
         if (Lives == 0)
         {
+            GameManager.instance.PlayerLost();
+
             Destroy(gameObject);
         }
     }

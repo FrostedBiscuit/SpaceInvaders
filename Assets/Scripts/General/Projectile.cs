@@ -18,9 +18,19 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y > YKill)
+        if (YKill > 0)
         {
-            Destroy(gameObject);
+            if (transform.position.y > YKill)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if (transform.position.y < YKill)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

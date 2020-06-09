@@ -13,6 +13,8 @@ public class EnemyRow : MonoBehaviour
 
     public bool ShouldMoveDown => Enemies.Any(e => Mathf.Abs(e.transform.position.x) >= EnemyGrid.MaxXMove);
 
+    public int EnemyScoreValue;
+
     public List<GameObject> Enemies;
 
     private Direction MoveDir = Direction.Right;

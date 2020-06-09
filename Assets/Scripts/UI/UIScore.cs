@@ -11,6 +11,6 @@ public class UIScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Text.text = $"SCORE: {GameManager.instance.HighScore}";
+        Text.text = $"SCORE: {GameManager.instance.Score}";
     }
 }
