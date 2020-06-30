@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class EnemyGrid : MonoBehaviour
 {
     public const float MaxXMove = 7.5f;
     public const float InitialMovementPeriod = 3f;
-    public const float InitialRowMoveDelayPeriod = 0.25f;
     public const float EnemyAttackPeriod = 1f;
 
     [SerializeField]
@@ -19,7 +16,21 @@ public class EnemyGrid : MonoBehaviour
     private int lastEnemyCount = 0;
 
     private float currentMovementPeriod = InitialMovementPeriod;
-    private float currentRowMoveDelayPeriod = InitialRowMoveDelayPeriod;
+
+    private IProjectileShooter enemyProjectileShooter;
+
+    private ISpawnPointProvider<Transform> enemyProjectileSpawnPointProvider;
+
+    private IMovementHandler<EnemyRow> enemyRowMovementHandler;
+
+    private void Awake()
+    {
+        enemyProjectileShooter = GetComponent<IProjectileShooter>();
+
+        enemyProjectileSpawnPointProvider = GetComponent<ISpawnPointProvider<Transform>>();
+
+        enemyRowMovementHandler = GetComponent<IMovementHandler<EnemyRow>>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,13 +40,11 @@ public class EnemyGrid : MonoBehaviour
         Invoke("MovementLoop", 1f);
     }
 
-    bool forceMoveHorizontal = false;
-
     private void MovementLoop()
     {
         if (Random.Range(0, 2) == 1)
         {
-            ShootProjectiles();
+            enemyProjectileShooter.Shoot(EnemyProjectile, enemyProjectileSpawnPointProvider.GetSpawnPoints(EnemyRows));
         }
 
         if (EnemyRows.Any(er => er.transform.position.y <= 1f && er.Enemies.Count > 0) || PlayerHealth.Lives == 0)
@@ -52,43 +61,13 @@ public class EnemyGrid : MonoBehaviour
             for (int i = 0; i < lastEnemyCount - currentEnemyCount; i++)
             {
                 currentMovementPeriod = currentMovementPeriod - currentMovementPeriod * 0.2f;
-                currentRowMoveDelayPeriod = currentRowMoveDelayPeriod - currentRowMoveDelayPeriod * 0.2f;
             }
 
             lastEnemyCount = currentEnemyCount;
         }
 
         // Check if enemies should move down a row
-        if (EnemyRows.Any(er => er.ShouldMoveDown) && forceMoveHorizontal == false)
-        {
-            //Debug.Log("Rows moving down");
-
-            float delay = 0f;
-
-            foreach (var er in EnemyRows)
-            {
-                er.Invoke("MoveDown", delay);
-
-                delay += currentRowMoveDelayPeriod;
-            }
-
-            forceMoveHorizontal = true;
-        }
-        else
-        {
-            //Debug.Log("Rows moving horizontally");
-
-            float delay = 0f;
-
-            foreach (var er in EnemyRows)
-            {
-                er.Invoke("MoveHorizontal", delay);
-
-                delay += currentRowMoveDelayPeriod;
-            }
-
-            forceMoveHorizontal = false;
-        }
+        enemyRowMovementHandler.HandleMovement(EnemyRows);
 
         if (EnemyRows.Any(er => er.Enemies.Count > 0))
         {
@@ -97,24 +76,6 @@ public class EnemyGrid : MonoBehaviour
         else
         {
             GameManager.instance.PlayerWon();
-        }
-    }
-
-    private void ShootProjectiles()
-    {
-        Debug.Log("Enemies are about to shoot");
-
-        System.Random random = new System.Random();
-
-        EnemyRow invasionRow = EnemyRows.First(er => er.Enemies.Count > 0);
-
-        // Scramble enemies which are candidates for firing projectile
-        IEnumerable<GameObject> enemiesToFire = invasionRow.Enemies.OrderBy(e => random.Next()).Take(Random.Range(0, 4));
-
-        // Instantiate the projectile objects for each enemy we selected before
-        foreach (var e in enemiesToFire)
-        {
-            Instantiate(EnemyProjectile, e.transform.position + (Vector3)Vector2.down * -0.25f, Quaternion.identity);
         }
     }
 

@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7854448074875417299}
   - component: {fileID: 7854448074875417298}
+  - component: {fileID: 8282244192859632594}
+  - component: {fileID: 3092637011595334991}
+  - component: {fileID: 6147605761880112470}
   m_Layer: 0
   m_Name: EnemyGrid
   m_TagString: Untagged
@@ -56,6 +59,42 @@ MonoBehaviour:
   - {fileID: 56065764395029504}
   - {fileID: 56065765706262637}
   - {fileID: 56065764560410557}
+--- !u!114 &8282244192859632594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854448074875417301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7c419e823eb8d42a724ef92b24be98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3092637011595334991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854448074875417301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe51cd999291ecc47aad4552e43ddfb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6147605761880112470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854448074875417301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e96267431ee35845ba81ae93ac90f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7854448074096180105
 PrefabInstance:
   m_ObjectHideFlags: 0
