@@ -18,33 +18,26 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+
+        playerScoreProvider = GetComponent<IScoreProvider>();
     }
     #endregion
 
-    private const string HighScoreKey = "HighScore";
-
     private const float GridYStart = 6.5f;
 
-    public int Score { get; protected set; }
-    public int HighScore { get; protected set; }
+    public int Score { get { return playerScoreProvider.Score; } }
+    public int HighScore { get { return playerScoreProvider.HighScore; } }
 
     [SerializeField]
     private GameObject EnemyGridPrefab;
     [SerializeField]
     private GameObject DefeatPanel;
 
+    private IScoreProvider playerScoreProvider;
+
     private void Start()
     {
-        if (PlayerPrefs.HasKey(HighScoreKey))
-        {
-            HighScore = PlayerPrefs.GetInt(HighScoreKey);
-        }
-        else
-        {
-            HighScore = 0;
-
-            PlayerPrefs.SetInt(HighScoreKey, 0);
-        }
+        playerScoreProvider.Init();
     }
 
     public void PlayerWon()
@@ -58,10 +51,7 @@ public class GameManager : MonoBehaviour
 
         DefeatPanel.SetActive(true);
 
-        if (Score > HighScore)
-        {
-            PlayerPrefs.SetInt(HighScoreKey, Score);
-        }
+        playerScoreProvider.SaveHighScore();
     }
 
     public void ReloadLevel()
@@ -69,18 +59,6 @@ public class GameManager : MonoBehaviour
         PlayerHealth.Lives = 3;
 
         SceneManager.LoadScene("Main");
-    }
-
-    public void AddScore(int amount)
-    {
-        if (amount < 0)
-        {
-            Debug.LogError($"GameManager::AddScore() => Can't add a negative score, value: {amount}");
-
-            return;
-        }
-
-        Score += amount;
     }
 
     private int gridIteration = 1;

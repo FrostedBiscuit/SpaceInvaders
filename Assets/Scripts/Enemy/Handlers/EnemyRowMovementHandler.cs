@@ -24,7 +24,7 @@ public class EnemyRowMovementHandler : MonoBehaviour, IMovementHandler<EnemyRow>
         {
             for (int i = 0; i < lastEnemyCount - newEnemyCount; i++)
             {
-                currentRowMoveDelayPeriod -= currentRowMoveDelayPeriod * 0.2f;
+                currentRowMoveDelayPeriod -= currentRowMoveDelayPeriod * 0.1f;
             }
 
             lastEnemyCount = newEnemyCount;

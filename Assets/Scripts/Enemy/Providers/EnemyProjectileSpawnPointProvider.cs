@@ -8,7 +8,17 @@ public class EnemyProjectileSpawnPointProvider : MonoBehaviour, ISpawnPointProvi
     public ICollection<Transform> GetSpawnPoints(ICollection spawnPointPool)
     {
         var enemySpawnPointPool = spawnPointPool as ICollection<EnemyRow>;
-        var invRow = enemySpawnPointPool.First(esp => esp.Enemies.Count > 0);
+
+        EnemyRow invRow;
+        
+        try
+        {
+            invRow = enemySpawnPointPool.First(esp => esp.Enemies.Count > 0);
+        }
+        catch
+        {
+            return null;
+        }
 
         var numberOfShots = Random.Range(0, 3);
         var numberToTake = Mathf.Clamp(numberOfShots, 1, invRow.Enemies.Count);

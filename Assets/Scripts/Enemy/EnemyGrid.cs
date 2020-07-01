@@ -49,6 +49,8 @@ public class EnemyGrid : MonoBehaviour
 
         if (EnemyRows.Any(er => er.transform.position.y <= 1f && er.Enemies.Count > 0) || PlayerHealth.Lives == 0)
         {
+            GameManager.instance.PlayerLost();
+
             return;
         }
 
@@ -60,7 +62,7 @@ public class EnemyGrid : MonoBehaviour
             // by the appropriate amount
             for (int i = 0; i < lastEnemyCount - currentEnemyCount; i++)
             {
-                currentMovementPeriod = currentMovementPeriod - currentMovementPeriod * 0.2f;
+                currentMovementPeriod = currentMovementPeriod - (currentMovementPeriod * 0.1f);
             }
 
             lastEnemyCount = currentEnemyCount;
